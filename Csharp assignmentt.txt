@@ -1,0 +1,260 @@
+1. Write a C# program that prompt the user to input three numbers. The program should then output the numbers in ascending order.
+
+Solution
+
+using System;
+
+public class SortNumbersCombined
+{
+    public static void Main(string[] args)
+    {
+        double num1, num2, num3;
+
+        do
+        {
+            Console.Write("Enter the first number: ");
+        } while (!double.TryParse(Console.ReadLine(), out num1));
+
+        do
+        {
+            Console.Write("Enter the second number: ");
+        } while (!double.TryParse(Console.ReadLine(), out num2));
+
+        do
+        {
+            Console.Write("Enter the third number: ");
+        } while (!double.TryParse(Console.ReadLine(), out num3));
+
+        double temp;
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = i + 1; j < 3; j++)
+            {
+                if (num1 > num2)
+                {
+                    temp = num1;
+                    num1 = num2;
+                    num2 = temp;
+                }
+                if (num2 > num3)
+                {
+                    temp = num2;
+                    num2 = num3;
+                    num3 = temp;
+                }
+            }
+        }
+
+        Console.WriteLine("The numbers in ascending order are: {0}, {1}, {2}", num1, num2, num3);
+    }
+}
+
+2. Write a PHP Function ,smallestindex ,that takes as parameters an int array and its size,and returns the index of the smallest element in the array .Also,write a program to test your function.
+
+Solution 
+<?php
+function smallestindex(array $arr, int $size): int
+{
+  $smallest_index = 0;
+
+  for ($i = 1; $i < $size; $i++) {
+    if ($arr[$i] < $arr[$smallest_index]) {
+      $smallest_index = $i;
+    }
+  }
+
+  return $smallest_index;
+}
+
+$numbers = array(5, 2, 8, 1, 9);
+$size = count($numbers);
+$smallest_element_index = smallestindex($numbers, $size);
+
+echo "The index of the smallest element is: " . $smallest_element_index . PHP_EOL;
+echo "The smallest element is: " . $numbers[$smallest_element_index] . PHP_EOL;
+
+?>
+
+3. Write a C# program that prompts the user to input a string and outputs the string in
+uppercase(Use a character array to store the string)
+
+Solution 
+using System;
+
+public class UppercaseString
+{
+    public static void Main(string[] args)
+    {
+        const int maxLength = 100;
+
+        char[] str = new char[maxLength];
+
+        Console.WriteLine("Enter a string: ");
+
+        int length = Console.ReadLine().ToCharArray(str, 0);
+
+        for (int i = 0; i < length; i++)
+        {
+            str[i] = char.ToUpper(char.IsLetter(str[i]) ? str[i] : str[i]);
+        }
+
+        Console.WriteLine("The string in uppercase is: ");
+        Console.WriteLine(new string(str, 0, length));
+    }
+}
+
+4. Write a C# program to compute the addition of of N by M matrices.Allow the user to determine the size of the row and column
+
+Solution
+using System;
+
+public class MatrixAddition
+{
+    public static void Main(string[] args)
+    {
+        int rows1, cols1, rows2, cols2;
+
+        do
+        {
+            Console.Write("Enter the number of rows for the first matrix (N): ");
+        } while (!int.TryParse(Console.ReadLine(), out rows1));
+
+        do
+        {
+            Console.Write("Enter the number of columns for the first matrix (M): ");
+        } while (!int.TryParse(Console.ReadLine(), out cols1));
+
+        do
+        {
+            Console.Write("Enter the number of rows for the second matrix (N): ");
+        } while (!int.TryParse(Console.ReadLine(), out rows2));
+
+        do
+        {
+            Console.Write("Enter the number of columns for the second matrix (M): ");
+        } while (!int.TryParse(Console.ReadLine(), out cols2));
+
+        if (rows1 != rows2 || cols1 != cols2)
+        {
+            Console.WriteLine("Error: Matrices must have the same dimensions for addition.");
+            return;
+        }
+
+        int[,] matrix1 = new int[rows1, cols1];
+        int[,] matrix2 = new int[rows2, cols2];
+        int[,] sumMatrix = new int[rows1, cols1];
+
+        Console.WriteLine("Enter elements for the first matrix: ");
+        for (int i = 0; i < rows1; i++)
+        {
+            for (int j = 0; j < cols1; j++)
+            {
+                do
+                {
+                    Console.Write($"Enter element [{i},{j}]: ");
+                } while (!int.TryParse(Console.ReadLine(), out matrix1[i, j]));
+            }
+        }
+
+        Console.WriteLine("Enter elements for the second matrix: ");
+        for (int i = 0; i < rows2; i++)
+        {
+            for (int j = 0; j < cols2; j++)
+            {
+                do
+                {
+                    Console.Write($"Enter element [{i},{j}]: ");
+                } while (!int.TryParse(Console.ReadLine(), out matrix2[i, j]));
+            }
+        }
+
+        // Compute the sum matrix (element-wise addition)
+        for (int i = 0; i < rows1; i++)
+        {
+            for (int j = 0; j < cols1; j++)
+            {
+                sumMatrix[i, j] = matrix1[i, j] + matrix2[i, j];
+            }
+        }
+
+        // Print the sum matrix
+        Console.WriteLine("The sum of the matrices is: ");
+        for (int i = 0; i < rows1; i++)
+        {
+            for (int j = 0; j < cols1; j++)
+            {
+                Console.Write($"{sumMatrix[i, j]}\t");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+5. Write a C# program that declares an array alpha of 50 components of the type float Initialize the array so that the first 25 components are equal to the square of the index variable and the last 25 components are equal to three times the index variable. Output the array so that 10 elements per line are printed.
+
+Solution
+using System;
+
+public class ArrayInitialization
+{
+    public static void Main(string[] args)
+    {
+        float[] alpha = new float[50];
+
+        for (int i = 0; i < alpha.Length; i++)
+        {
+            if (i < 25)
+            {
+                alpha[i] = i * i;
+            }
+            else
+            {
+                alpha[i] = 3 * i;
+            }
+        }
+
+        Console.WriteLine("Array elements:");
+        for (int i = 0; i < alpha.Length; i++)
+        {
+            Console.Write($"{alpha[i]:F2}\t"); // Format output with 2 decimal places and tab
+
+            if ((i + 1) % 10 == 0)
+            {
+                Console.WriteLine();
+            }
+        }
+    }
+}
+
+6. Write a C# program that prompts the user to input a number .The program should then output the number and a message saying wether the number is positive ‚negative or zero.
+
+Solution
+using System;
+
+public class CheckNumberSign
+{
+    public static void Main(string[] args)
+    {
+        Console.Write("Enter a number: ");
+
+        double number;
+        while (!double.TryParse(Console.ReadLine(), out number))
+        {
+            Console.WriteLine("Invalid input. Please enter a number.");
+            Console.Write("Enter a number: ");
+        }
+
+        if (number > 0)
+        {
+            Console.WriteLine($"{number} is positive.");
+        }
+        else if (number < 0)
+        {
+            Console.WriteLine($"{number} is negative.");
+        }
+        else
+        {
+            Console.WriteLine($"{number} is zero.");
+        }
+    }
+}
